@@ -38,12 +38,21 @@ public void behave() {
             if (x > 0.5) {
                 tigerState = 2;
                 react();
-                System.out.println("succeed");
-                tigerState = 3;
-                react();
+                double catchRabbitChances = new Random().nextDouble();
+                double runawayChances = new Rabbit().throwDice();
+                System.out.println("tiger: " + catchRabbitChances + " | rabbit: " + runawayChances);
+                if (catchRabbitChances > runawayChances){
+                    System.out.println("succeed");
+                    tigerState = 3;
+                    react();}
+                else{
+                    System.out.println("failed to catch rabbit");
+                    tigerState = 4;
+                    react();
+                }
             }
             else {
-                System.out.println("failed");
+                System.out.println("failed to spot rabbit");
                 tigerState = 4;
                 react();}
             break;
